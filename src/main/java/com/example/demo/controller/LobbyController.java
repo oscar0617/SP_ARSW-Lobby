@@ -20,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 @CrossOrigin(origins = "*")
 public class LobbyController {
 
-    @Autowired
-    LobbyService lobbyService;
+    private final LobbyService lobbyService;
+
+    public LobbyController(LobbyService lobbyService) {
+        this.lobbyService = lobbyService;
+    }
 
     @PostMapping("/v1/join/{nickName}/{idLobby}")
     public ResponseEntity<Void> joinLobby(@PathVariable String nickName, @PathVariable int idLobby) {
